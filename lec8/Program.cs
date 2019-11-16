@@ -11,25 +11,34 @@ namespace lec8
     {
         static void Main(string[] args)
         {
-            MathOperation minus = Sub;
+            NumericalIntegrator integrator = new NumericalIntegrator();
 
-            int result = minus(5, 4);
+            F function = new F(Square);
+
+            double result = integrator.Integrate(function, 1, 2, 1000);
             Console.WriteLine(result);
 
-            minus = new MathOperation(Program.Add);
-            result = minus(3, 4);
+
+            //неявное создание делегата
+            result = integrator.Integrate(Program.Cube, -2, 2, 10000);
             Console.WriteLine(result);
+            
+            //явное создание делегата
+            result = integrator.Integrate(new F(Math.Sin), -2, 2, 10000);
+            Console.WriteLine(result);
+
             Console.ReadLine();
         }
 
-        static int Sub(int a, int b)
+
+        static double Square(double x)
         {
-            return a - b;
+            return x * x;
         }
 
-        static int Add(int x, int y)
+        static double Cube(double x)
         {
-            return x + y;
+            return x * x * x;
         }
     }
 }
