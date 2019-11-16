@@ -20,5 +20,17 @@ namespace lec8
 
             return result;
         }
+
+        public double Integrate2(Func<double,double> f, double a, double b, int n)
+        {
+            double result = 0;
+            double delta = (b - a) / n;
+            for (int i = 0; i < n; i++)
+            {
+                result += f(a + delta * i) * delta;
+            }
+
+            return result;
+        }
     }
 }

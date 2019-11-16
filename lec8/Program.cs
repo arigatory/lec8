@@ -27,6 +27,19 @@ namespace lec8
             result = integrator.Integrate(new F(Math.Sin), -2, 2, 10000);
             Console.WriteLine(result);
 
+            F f2 = Math.Cos;
+            F f3 = Square;
+
+            F f4 = (F)Delegate.Combine(f2, f3);
+            F f5 = f2 + f3;
+
+            result = integrator.Integrate(f4, -2, 2, 10000);
+            Console.WriteLine(result);
+
+            result = integrator.Integrate2(Math.Sin, -2, 2, 1000);
+            Console.WriteLine(result);
+
+
             Console.ReadLine();
         }
 
